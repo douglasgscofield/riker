@@ -88,9 +88,10 @@ slow and a memory hog.
 
 FASTA Input   | Picard performance | Riker performance
 --------------|--------------------|--------------------
-[Human reference genome GRCh37.p9][NCBI_Human], 3.2Mbp in 245 seqs | 35 s, 18 GB RAM | 79 sec, 10 GB memory
-[Spruce draft genome][spruce] July 2012 master, 12.4Gbp in 10.4M seqs     | **failed to complete with default JVM**, `java.lang.OutOfMemoryError: PermGen space` exception after 2613 sec, 126 GB memory | 959 sec, 69 MB memory
-                                                                          | `-XX:MaxPermSize=2g` option to JVM: 2613 s, 126 GB RAM | 
+[Human reference genome GRCh37.p9][NCBI_Human], 3.2Mbp in 245 seqs | 35 sec, 18 GB memory | 79 sec, 10 GB memory
+[Spruce draft genome][spruce] July 2012 master, 12.4Gbp in 10.4M seqs     | **failed to complete with default JVM options**, `java.lang.OutOfMemoryError: PermGen space` after 2613 sec, 126 GB memory | 959 sec, 69 MB memory
+                                                                          | **failed to complete with `-XX:MaxPermSize=2g`**, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15094 sec, 119 GB memory | 
+                                                                          | `-XX:MaxPermSize=2g -XX:+UseParallelGC` options to JVM: *waiting on results* | 
 
 [NCBI_Human]:  ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/
 
