@@ -41,6 +41,7 @@ is not yet in production shape.  [Contact me][Contact] if you would like to
 use [yoruba][] and I'll help get you started.
 
 [BioPerl]:  http://www.bioperl.org
+[yoruba]:   https://github.com/douglasgscofield/yoruba
 [Contact]:  mailto:douglasgscofield@gmail.com
 
 Picard tool                              |  Riker alternative
@@ -50,15 +51,25 @@ Picard tool                              |  Riker alternative
 
 
 [Picard_AORRG]: http://picard.sourceforge.net/command-line-overview.shtml#AddOrReplaceReadGroups
-[yoruba]:       https://github.com/douglasgscofield/yoruba
 [Picard_CSD]:   http://picard.sourceforge.net/command-line-overview.shtml#CreateSequenceDictionary
 
-Any performance comparisons presented below were done on a 16-core 64-bit
-Ubuntu machine with 192 GB RAM, with default options for the Java Virtual
-Machine for the Picard runs unless otherwise specified.  Timing and memory
-statistics were collected using one run of the tool prefixed with
-`/usr/bin/time --verbose`, with user time used for time and maximum resident
-set size used for memory size.
+Performance comparisons presented below were done on a 16-core 64-bit Ubuntu
+machine with 192 GB RAM, with default options for the Java Virtual Machine for
+Picard runs unless otherwise specified.  Timing and memory statistics were
+collected using one run of the tool prefixed with `/usr/bin/time --verbose`,
+with user time used for time and maximum resident set size used for memory
+size.
+
+
+AddOrReplaceReadGroups
+----------------------
+
+Read groups in BAM files can be manipulated using the [Yoruba][yoruba] command
+[readgroup][].  It is faster and more flexible than Picard's
+[AddOrReplaceReadGroups][Picard_AORRG].  See that page for more information.
+
+[readgroup]:  https://github.com/douglasgscofield/yoruba#readgroup
+
 
 
 CreateSequenceDictionary
@@ -82,9 +93,13 @@ could be more thoroughly tested.  Currently Riker can only read local files.
 
 [Riker_CSD]: https://github.com/douglasgscofield/riker/blob/master/createSequenceDictionary.pl
 
-For the human genome, Picard's CreateSequenceDictionary is fast.  For the
-spruce genome draft, which contains many, many shorter sequences, it is both
-slow and a memory hog.
+For the human genome, Picard's CreateSequenceDictionary is fast, completing in
+35 sec compared to 79 sec for the Riker script; Picard requires somewhat more
+memory but the difference is not great.  However, for the spruce genome draft,
+which contains many, many shorter sequences, it fails to run while consuming a
+lot of memory and considerable time until failure.  Once the JVM is tuned so
+that it completes, it is both slow and a memory hog.
+
 
 FASTA Input   | Picard performance | Riker performance
 --------------|--------------------|--------------------
