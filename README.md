@@ -46,7 +46,7 @@ use [yoruba][] and I'll help get you started.
 
 Picard tool                              |  Riker alternative
 -----------------------------------------|---------------------
-[AddOrReplaceReadGroups][Picard_AORRG]   |  [**yoruba readgroup**][yoruba]
+[AddOrReplaceReadGroups][Picard_AORRG]   |  [**yoruba readgroup**](#addorreplacereadgroups)
 [CreateSequenceDictionary][Picard_CSD]   |  [**createSequenceDictionary.pl**](#createsequencedictionary)
 
 
@@ -59,6 +59,9 @@ Picard runs unless otherwise specified.  Timing and memory statistics were
 collected using one run of the tool prefixed with `/usr/bin/time --verbose`,
 with user time used for time and maximum resident set size used for memory
 size.
+
+To run a few unit tests after download, run the `test.sh` script while in the
+`tests/` directory.
 
 
 AddOrReplaceReadGroups
