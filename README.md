@@ -98,18 +98,20 @@ could be more thoroughly tested.  Currently Riker can only read local files.
 
 For the human genome, Picard's CreateSequenceDictionary is fast, completing in
 35 sec compared to 79 sec for the Riker script; Picard requires somewhat more
-memory but the difference is not great.  However, for the spruce genome draft,
-which contains many, many shorter sequences, it fails to run while consuming a
-lot of memory and considerable time until failure.  Once the JVM is tuned so
+memory but the difference is not great.  For the spruce genome draft, which
+contains many, many shorter sequences, Picard fails to run while consuming a
+lot of memory with considerable time until failure.  Once the JVM is tuned so
 that it completes, it is both slow and a memory hog.
 
 
 FASTA Input   | Picard performance | Riker performance
 --------------|--------------------|--------------------
 [Human reference genome GRCh37.p9][NCBI_Human], 3.2Mbp in 245 seqs | 35 sec, 18 GB memory | 79 sec, 10 GB memory
-[Spruce draft genome][spruce] July 2012 master, 12.4Gbp in 10.4M seqs     | **failed to complete with default JVM options**, `java.lang.OutOfMemoryError: PermGen space` after 2613 sec, 126 GB memory | 959 sec, 69 MB memory
-                                                                          | **failed to complete with `-XX:MaxPermSize=2g`**, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15094 sec, 119 GB memory | 
-                                                                          | `-XX:MaxPermSize=2g -XX:+UseParallelGC` options to JVM: *waiting on results* | 
+[Spruce draft genome][spruce] July 2012 master, 12.4Gbp in 10.4M seqs | **failed**, exception with default JVM options, `java.lang.OutOfMemoryError: PermGen space` after 2613 sec, 126 GB memory | 959 sec, 69 MB memory
+     | **failed**, exception with `-XX:MaxPermSize=2g`, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15094 sec, 119 GB memory | 
+     | **failed**, exception with `-XX:MaxPermSize=2g -XX:+UseParallelGC`, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15246 sec, 119 GB memory | 
+     | **failed**, exception with `-XX:MaxPermSize=2g -XX:+UseConcMarkSweepGC`, `java.lang.OutOfMemoryError: Java heap space` after 19 sec, 3 GB memory... strange | 
+     | trying with `-XX:MaxPermSize=2g -XX:+UseConcMarkSweepGC -Xmx128g`, waiting on results| 
 
 [NCBI_Human]:  ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/
 
