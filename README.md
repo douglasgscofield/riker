@@ -111,7 +111,7 @@ FASTA Input   | Picard performance | Riker performance
      | **failed**, exception with `-XX:MaxPermSize=2g`, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15094 sec, 119 GB memory | 
      | **failed**, exception with `-XX:MaxPermSize=2g -XX:+UseParallelGC`, `java.lang.OutOfMemoryError: GC overhead limit exceeded` after 15246 sec, 119 GB memory | 
      | **failed**, exception with `-XX:MaxPermSize=2g -XX:+UseConcMarkSweepGC`, `java.lang.OutOfMemoryError: Java heap space` after 19 sec, 3 GB memory... strange | 
-     | trying with `-XX:MaxPermSize=2g -XX:+UseConcMarkSweepGC -Xmx128g`, waiting on results| 
+     | **completed** with `-XX:MaxPermSize=2g -XX:+UseConcMarkSweepGC -Xmx128g` after 39854 sec, 188 GB memory | 
 
 [NCBI_Human]:  ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/
 
