@@ -1,0 +1,12 @@
+@HD	VN:1.0	SO:unsorted
+@SQ	SN:seq_142075	LN:1498	UR:file:test_01_input.fa.gz	M5:5f8acc26330faa7d9337ae02ae33e1dd
+@SQ	SN:seq_142085	LN:5195	UR:file:test_01_input.fa.gz	M5:ab46e2697d3b10f589943d93d672cf06
+@SQ	SN:seq_142230_gaps	LN:2373	UR:file:test_01_input.fa.gz	M5:32f9e2edce18f5d8057b683fac7a9e40
+@SQ	SN:seq_142233_linelengthx	LN:10806	UR:file:test_01_input.fa.gz	M5:429c01922796c7ff39fa7321090be9a3
+@SQ	SN:seq_142233_linelength2x	LN:10806	UR:file:test_01_input.fa.gz	M5:429c01922796c7ff39fa7321090be9a3
+@SQ	SN:seq_142959	LN:3769855	UR:file:test_01_input.fa.gz	M5:480dd542408c98e5a1960b889ad01791
+@SQ	SN:seq_10335011	LN:486	UR:file:test_01_input.fa.gz	M5:8eb0231a8fcb403c73a6cecba4d6d80e
+@SQ	SN:seq_10335012	LN:432	UR:file:test_01_input.fa.gz	M5:d03d40f6e32a927ec76b19b05c812610
+@SQ	SN:seq_10335013	LN:1452	UR:file:test_01_input.fa.gz	M5:e86d26d3ae1b607f30fcaecd1e74b772
+@SQ	SN:seq_10335014	LN:481	UR:file:test_01_input.fa.gz	M5:7c653d0f90694ca47953962a11c3d466
+@SQ	SN:seq_10335015	LN:60	UR:file:test_01_input.fa.gz	M5:39ecba9325dacba5ab0003c34b8ce9dc

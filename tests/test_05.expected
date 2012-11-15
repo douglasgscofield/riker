@@ -1,0 +1,2 @@
+createSequenceDictionary.pl: input=test_01_input.fa output=test_05.1
+createSequenceDictionary.pl: created a dictionary for 11 sequences

@@ -66,7 +66,7 @@ OPTIONS
 
 GetOptions (
     'out=s' => \$out_file,
-    'verbose=s' => \$opt_verbose,
+    'verbose' => \$opt_verbose,
     'no-gzip' => \$opt_nogzip,
     'help|?' => \$help,
 ) or usage(1);
