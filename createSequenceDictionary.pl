@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Copyright (c) 2012 Douglas G. Scofield, Umeå Plant Sciences Centre, Umeå, Sweden
+# Copyright (c) 2012-2013 Douglas G. Scofield, Umeå Plant Sciences Centre, Umeå, Sweden
 # douglas.scofield@plantphys.umu.se
 # douglasgscofield@gmail.com
 #
@@ -10,13 +10,15 @@
 # partial replacement for Picard tools' CreateSequenceDictionary.jar.  See
 # https://github.com/douglasgscofield/riker#createsequencedictionary.
 #
+# CHANGELOG:
+# +++ 2013-04-18 Die gracefully if input file is missing
+#
 # TODO:
 # --- See what if any Picard subtleties might be missing...
 # xxx Handle gzipped input 
 
 use strict;
 use warnings;
-use Carp;
 use Getopt::Long;
 use File::Basename qw();
 use Digest::MD5 qw();
@@ -31,7 +33,7 @@ my $opt_verbose = 0;
 my $progress = 10000;
 my $help = 0;
 
-use constant VERSION => "0.0.2";
+use constant VERSION => "0.0.3";
 my $script = File::Basename::basename($0);
 
 sub usage ($){
@@ -73,7 +75,9 @@ GetOptions (
 
 usage(0) if $help;
 
-croak("one input file required, in FASTA format") if scalar(@ARGV) == 0 or scalar(@ARGV) > 1;
+die("one input file required, in FASTA format") if scalar(@ARGV) == 0 or scalar(@ARGV) > 1;
+
+die("input file $ARGV[0] cannot be read") if ! -r $ARGV[0];
 
 $in_file = File::Spec->rel2abs($ARGV[0]);
 if (! $out_file) {
