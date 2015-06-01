@@ -1,7 +1,8 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
-# Copyright (c) 2012-2013 Douglas G. Scofield, Umeå Plant Sciences Centre, Umeå, Sweden
-# douglas.scofield@plantphys.umu.se
+# Copyright (c) 2012-2015 Douglas G. Scofield
+# Evolutionary Biology Centre, Uppsala University
+# douglas.scofield@ebc.uu.se
 # douglasgscofield@gmail.com
 #
 # No warranty is implied or assumed by this code.  Please send bugs, suggestions etc.
@@ -11,7 +12,8 @@
 # https://github.com/douglasgscofield/riker#createsequencedictionary.
 #
 # CHANGELOG:
-# +++ 2013-04-18 Die gracefully if input file is missing
+# - 2015-06-01 /usr/bin/env perl
+# - 2013-04-18 Die gracefully if input file is missing
 #
 # TODO:
 # --- See what if any Picard subtleties might be missing...
