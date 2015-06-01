@@ -29,8 +29,6 @@ use Bio::SeqIO;
 
 my $in_file = "";
 my $out_file = "";
-my $opt_nogzip = 0;
-my $gunzip = "gzip -d -c -f"; # command to unpack potentially gzipped file and send to stdout
 my $opt_verbose = 0;
 my $progress = 10000;
 my $help = 0;
@@ -59,7 +57,6 @@ OPTIONS
    infile.fa             FASTA-format file of sequences, must be given
    -o FILE, --out FILE   output dictionary to FILE; if not provided, the name
                          used is infile.dict
-   --no-gzip             open file directly, do not assume it might be gzipped
 
    -v, --verbose         show absolute paths of input and output files and
                          progress of dictionary creation
@@ -71,7 +68,6 @@ OPTIONS
 GetOptions (
     'out=s' => \$out_file,
     'verbose' => \$opt_verbose,
-    'no-gzip' => \$opt_nogzip,
     'help|?' => \$help,
 ) or usage(1);
 
@@ -91,7 +87,7 @@ if (! $out_file) {
 
 print STDERR "$script: input=$in_file output=$out_file\n" if $opt_verbose;
 
-my $in = Bio::SeqIO->new( -file => ($opt_nogzip ? "<$in_file" : "$gunzip $in_file |"), 
+my $in = Bio::SeqIO->new( -file => "<$in_file", 
                           -format => "fasta" );
     
 open(my $out, ">$out_file") or die("could not open output dictionary $out_file: $!");;
