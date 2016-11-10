@@ -33,7 +33,7 @@ my $opt_verbose = 0;
 my $progress = 10000;
 my $help = 0;
 
-use constant VERSION => "0.0.3";
+use constant VERSION => "0.0.4";
 my $script = File::Basename::basename($0);
 
 sub usage ($){
@@ -43,24 +43,35 @@ createSequenceDictionary.pl [-o outfile] infile.fa
 
    Create a sequence dictionary for the input FASTA file.  The input file
    may be compressed with gzip.
-   
-   A sequence dictionary contains a SAM-format header line for each FASTA 
-   sequence with the sequence name, the full URL of the referene sequence 
-   (currently only local files are supported), and the 32-character MD5 
-   hashkey for the sequence after all gaps (as indicated by ' ' or '-') are 
+
+   A sequence dictionary contains a SAM-format header line for each FASTA
+   sequence with the sequence name, the full URL of the referene sequence
+   (currently only local files are supported), and the 32-character MD5
+   hashkey for the sequence after all gaps (as indicated by ' ' or '-') are
    removed.
 
-   This is a partial replacement for Picardtools' CreateSequenceDictionary.jar.
+   This is a partial replacement for Picard's CreateSequenceDictionary and is
+   the only reasonable option when the infile has many sequences.  Equivalent
+   command lines:
+
+     java -jar picard.jar CreateSequenceDictionary R=reference.fasta O=reference.dict
+
+     createSequenceDictionary.pl -o reference.dict reference.fasta
+
+   Unlike Picard, this script does not support remote files available via URLs.
 
 OPTIONS
 
    infile.fa             FASTA-format file of sequences, must be given
-   -o FILE, --out FILE   output dictionary to FILE; if not provided, the name
-                         used is infile.dict
+   -o FILE, --out FILE   Output dictionary to FILE; if not provided, the name
+                         used is that of the input file with the final suffix
+                         replaced by '.dict', so infile.fa has infile.dict
+                         and infile.fa.gz has infile.fa.dict
 
-   -v, --verbose         show absolute paths of input and output files and
+   -v, --verbose         Show absolute paths of input and output files and
                          progress of dictionary creation
-   -?, --help            this message
+   -h, --help, -?        This message
+
 ";
     exit($exitcode);
 }

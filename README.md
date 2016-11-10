@@ -7,7 +7,7 @@ Riker: Replacements for Picard tools
 bioinformatics tasks involving BAM, FASTA, FastQ files, etc.  However, like
 many bioinformatics tools Picard suffers from the "all the world's a human
 genome" problem, in that its usability declines rapidly for any genome project
-that is not human or at least mammalian.  I am part of the the [Norway spruce
+that is not human or at least mammalian.  I was part of the the [Norway spruce
 genome project][spruce] and our genome assemblies are &gt;10 gigabases and for
 now have &gt;10M scaffolds.  These are statistics that send the Picard tools
 that I am most interested in using into hysterics, and send me to the Java VM
@@ -95,6 +95,45 @@ version 1.77 is identical for two examples (see below), but certainly Riker
 could be more thoroughly tested.  Currently Riker can only read local files.
 
 [Riker_CSD]: https://github.com/douglasgscofield/riker/blob/master/createSequenceDictionary.pl
+
+### Usage
+
+```
+createSequenceDictionary.pl [-o outfile] infile.fa
+
+   Create a sequence dictionary for the input FASTA file.  The input file
+   may be compressed with gzip.
+
+   A sequence dictionary contains a SAM-format header line for each FASTA
+   sequence with the sequence name, the full URL of the referene sequence
+   (currently only local files are supported), and the 32-character MD5
+   hashkey for the sequence after all gaps (as indicated by ' ' or '-') are
+   removed.
+
+   This is a partial replacement for Picard's CreateSequenceDictionary and is
+   the only reasonable option when the infile has many sequences.  Equivalent
+   command lines:
+
+     java -jar picard.jar CreateSequenceDictionary R=reference.fasta O=reference.dict
+
+     createSequenceDictionary.pl -o reference.dict reference.fasta
+
+   Unlike Picard, this script does not support remote files available via URLs.
+
+OPTIONS
+
+   infile.fa             FASTA-format file of sequences, must be given
+   -o FILE, --out FILE   Output dictionary to FILE; if not provided, the name
+                         used is that of the input file with the final suffix
+                         replaced by '.dict', so infile.fa has infile.dict
+                         and infile.fa.gz has infile.fa.dict
+
+   -v, --verbose         Show absolute paths of input and output files and
+                         progress of dictionary creation
+   -h, --help, -?        This message
+```
+
+### Performance
 
 For the human genome, Picard's CreateSequenceDictionary is fast, completing in
 35 sec compared to 79 sec for the Riker script; Picard requires somewhat more
